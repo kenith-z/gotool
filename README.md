@@ -1,6 +1,6 @@
 # gotool
 
-#use
+# use 
  +  System.out.println(HttpRequest.sendPost("http://localhost:8080/login","username=123","password=123"));
  +  System.out.println(HttpRequest.sendGet("https://baidu.com"));
  
