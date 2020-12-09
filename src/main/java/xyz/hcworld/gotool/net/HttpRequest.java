@@ -18,15 +18,15 @@ import java.util.regex.Pattern;
  */
 public class HttpRequest {
 
-    public static final String GET = "get";
-    public static final String POST = "post";
+    private static final String GET = "get";
+    private static final String POST = "post";
     private static final String PATTERN = "[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+\\.?";
 
     /**
      * 向指定URL发送GET方法的请求
      *
      * @param url    发送请求的URL
-     * @param params 请求参数，请求参数应该是 name1=value1&name2=value2 的形式。
+     * @param params 请求参数
      * @return URL 所代表远程资源的响应结果
      */
     public static String sendGet(String url, String... params) {
@@ -49,7 +49,7 @@ public class HttpRequest {
      * 向指定URL
      *
      * @param url    发送请求的URL
-     * @param params 请求参数，请求参数应该是 name1=value1&name2=value2 的形式。
+     * @param params 请求参数
      * @return URL 所代表远程资源的响应结果
      */
     private static String sendHttp(String type, String url, String... params) {
@@ -112,7 +112,6 @@ public class HttpRequest {
     }
 
     private static String paramsStr(boolean get, String... params) {
-//        String[] strs = params;
         StringBuilder sBu = new StringBuilder(get ? "?" : "");
         if (params.length > 1) {
             for (String string : params) {
