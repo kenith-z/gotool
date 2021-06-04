@@ -1,8 +1,9 @@
 package xyz.hcworld.gotool.date;
 
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 时间工具包
@@ -34,6 +35,49 @@ public class DateTimeUtils {
      */
     public static String getCurrentDateStr() {
         return LocalDateTime.now(ZoneOffset.of(ZONE)).format(DATE);
+    }
+    /**
+     * 年月日 时分秒<br>
+     * yyyy-MM-dd
+     */
+    public static LocalDateTime getCurrentDateTime() {
+        return LocalDateTime.now(ZoneOffset.of(ZONE));
+    }
+    /**
+     * 年月日<br>
+     * yyyy-MM-dd
+     */
+    public static LocalDate getCurrentDate() {
+        return LocalDateTime.now(ZoneOffset.of(ZONE)).toLocalDate();
+    }
+    /**
+     * 时分秒<br>
+     * yyyy-MM-dd
+     */
+    public static LocalTime getCurrentTime() {
+        return LocalDateTime.now(ZoneOffset.of(ZONE)).toLocalTime();
+    }
+
+    public static Instant getCurrentInstant() {
+        return Instant.now().plusMillis(TimeUnit.HOURS.toMillis(8));
+    }
+
+
+    /**
+     * LocalDateTime转Date<br>
+     * @param dateTime LocalDateTime类
+     * @return Date类
+     */
+    public static Date toDate(LocalDateTime dateTime) {
+        return Date.from(dateTime.atZone(ZoneOffset.of(ZONE)).toInstant());
+    }
+    /**
+     * Date转LocalDateTime<br>
+     * @param date Date
+     * @return LocalDateTime类
+     */
+    public static LocalDateTime toLocalDateTime(Date date) {
+        return Instant.ofEpochMilli(date.getTime()).atZone(ZoneOffset.of(ZONE)).toLocalDateTime();
     }
 
     /**

@@ -29,7 +29,10 @@
     </div>
     <script>
         let publicKey = ''
-        let dataC = '第一次测试'
+        let dataC = {
+            account: 'zhang@hcworld.xyz',
+            password: '123456'
+        }
         let keyC = '1234567887654321'
         let ivC = '1234567812345678'
 
@@ -46,13 +49,14 @@
                 ax.get('http://localhost:8080/getPublicKey')
                     .then(response => {
 
-                        this.publicKeyInfo = response.data
+                        this.publicKeyInfo = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCbbGm7jvFYwiT+0IWe2Av3HyCauq9hY1FqxJ08YrE0tUuNwHBGbFidsbS590+h5FZhqn05NOSce1Nwv4JTMmBM1PMd/uU7yD9t5WXaoA/9mrqA/l1DxVCbQA7G/s+MpmkG/3x79l6qQ9MAyTRayYI9JukBIcR2SkWXjHP07QuI8wIDAQAB'
 
-                        publicKey = response.data
+                        publicKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCbbGm7jvFYwiT+0IWe2Av3HyCauq9hY1FqxJ08YrE0tUuNwHBGbFidsbS590+h5FZhqn05NOSce1Nwv4JTMmBM1PMd/uU7yD9t5WXaoA/9mrqA/l1DxVCbQA7G/s+MpmkG/3x79l6qQ9MAyTRayYI9JukBIcR2SkWXjHP07QuI8wIDAQAB'
 
                         let rsakeyC = rsaEn(keyC, publicKey)
-                        let infoC = aesEn(dataC, keyC, ivC, rsakeyC)
-                        return ax.post('http://localhost:8080/post', infoC)
+                        let account = aesEn(JSON.stringify(dataC), keyC, ivC, rsakeyC)
+                        console.log(account)
+                        return ax.post('http://localhost:8080/login', account)
                     }).then(response => {
                         this.endInfo = aesDe(response.data, keyC, ivC)
                     })
@@ -79,6 +83,8 @@
                     padding: CryptoJS.pad.Pkcs7
                 })
             return {
+                account: 'no123456',
+                password: 'no123456',
                 encryptedData: encrypted.toString(),
                 encryptedKey: rsakey,
                 encryptedIv: CryptoJS.enc.Base64.stringify(iv)

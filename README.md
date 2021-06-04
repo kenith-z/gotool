@@ -1,4 +1,5 @@
 # gotool
+
 [![jdk版本](https://img.shields.io/badge/java-1.8+-green.svg)](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 [![许可证](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/z875479694h/gotool/blob/master/LICENSE)
 [![博客](https://img.shields.io/badge/blog-Kenith–Zhang-blueviolet.svg)](https://hcworld.xyz)
@@ -7,7 +8,8 @@
 ## use
 
 ### quote
- 
+
+ ```xml 
     <dependency>
       <groupId>xyz.hcworld.gotool</groupId>
       <artifactId>gotool</artifactId>
@@ -19,9 +21,11 @@
       <version>1.2.0</version>
       <classifier>javadoc</classifier>
     </dependency>
+```
 
 ### usage method
 
+```java 
     // HttpRequest http请求
     System.out.println(HttpRequest.sendPost("http://localhost:8080/login","username=123","password=123"));
     System.out.println(HttpRequest.sendGet("https://baidu.com"));
@@ -87,9 +91,13 @@
        A5DCEAA6AD1E2338F694FBF9CDF3E921
        A5DCEAA6AD1E2338F694FBF9CDF3E921
     */
+```
+
 #### RSA and AES
+
 1.details see example of AesAndRsaT demo
 
+```java 
     //前端请求RSA公钥
     //后端生成rsa公钥密钥
     Map<String, String> publicAndPrivateKey = null;
@@ -168,6 +176,28 @@
     } catch (Exception e) {
     e.printStackTrace();
     }
- 
- 
+```
 
+#### FullPermutation
+
+```java 
+        //对元素进行全排列
+        List<Character> c= new ArrayList<>();
+        c.add('a');
+        c.add('b');
+        c.add('c');
+        FullPermutation<Character> go =new FullPermutation<>();
+        go.fullPermutation(c, 0);
+        System.out.println(go.result().toString());
+
+        List<Integer> i= new ArrayList<>();
+        i.add(1);
+        i.add(2);
+        i.add(3);
+        FullPermutation<Integer> go1 =new FullPermutation<>(i);
+        System.out.println(go1.result().toString());
+        /* 结果
+             [[a, b, c], [a, c, b], [b, a, c], [b, c, a], [c, b, a], [c, a, b]]
+             [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 2, 1], [3, 1, 2]]
+        */
+```
