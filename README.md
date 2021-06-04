@@ -13,12 +13,12 @@
     <dependency>
       <groupId>xyz.hcworld.gotool</groupId>
       <artifactId>gotool</artifactId>
-      <version>1.2.0</version>
+      <version>1.3.0</version>
     </dependency>
     <dependency>
       <groupId>xyz.hcworld.gotool</groupId>
       <artifactId>gotool</artifactId>
-      <version>1.2.0</version>
+      <version>1.3.0</version>
       <classifier>javadoc</classifier>
     </dependency>
 ```
